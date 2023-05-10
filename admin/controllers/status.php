@@ -1,0 +1,23 @@
+<?php
+require_once("sistema.php");
+class Status extends Sistema
+{
+    public function get($id = null)
+    {
+        $this->db();
+        if (is_null($id)) {
+            $sql = "select * from status";
+            $st = $this->db->prepare($sql);
+            $st->execute();
+            $data = $st->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            $sql = "select * from status where id_status = :id";
+            $st = $this->db->prepare($sql);
+            $st->bindParam(":id", $id, PDO::PARAM_INT);
+            $st->execute();
+            $data = $st->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $data;
+    }
+}
+$status = new Status;
