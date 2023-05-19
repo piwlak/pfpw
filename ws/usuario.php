@@ -1,18 +1,18 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 include_once(__DIR__.'/../admin/controllers/sistema.php');
-include_once(__DIR__.'/../admin/controllers/departamento.php');
+include_once(__DIR__.'/../admin/controllers/usuario.php');
 
 $action = $_SERVER['REQUEST_METHOD'];
 $id =  isset($_GET['id']) ?  $_GET['id'] : null;
 
 switch($action){
     case 'DELETE':
-        $data['mensaje']= 'No existe el departamento.';
+        $data['mensaje']= 'No existe el usuario.';
         if (!is_null($id)) {
-            $contador = $departamento->delete($id);
+            $contador = $usuario->delete($id);
             if ($contador == 1) {
-                $data['mensaje']= 'Se elimino el departamento.';
+                $data['mensaje']= 'Se elimino el usuario.';
             }
         }
         break;
@@ -20,17 +20,17 @@ switch($action){
         $data = array();
         $data = $_POST['data'];
         if (is_null($id)) {
-            $cantidad = $departamento->new($data);
+            $cantidad = $usuario->new($data);
             if ($cantidad !=0) {
-                $data['mensaje']='Se inserto el departamento.';
+                $data['mensaje']='Se inserto el usuario.';
                 //$data[]
             }else{
                 $data['mensaje']='Ocurrio un error';
             }
         }else{
-            $cantidad = $departamento->edit($id, $data);
+            $cantidad = $usuario->edit($id, $data);
             if ($cantidad !=0) {
-                $data['mensaje']='Se modifico el departamento.';
+                $data['mensaje']='Se modifico el usuario.';
                 //$data[]
             }else{
                 $data['mensaje']='Ocurrio un error';
@@ -41,9 +41,9 @@ switch($action){
     case 'GET':
     default:
         if (is_null($id)) {
-            $data = $departamento->get();
+            $data = $usuario->get();
         }else {
-            $data = $departamento->get($id);
+            $data = $usuario->get($id);
         }
         break;
 }

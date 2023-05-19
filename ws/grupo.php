@@ -1,0 +1,52 @@
+<?php
+header('Content-Type: application/json; charset=utf-8');
+include_once(__DIR__.'/../admin/controllers/sistema.php');
+include_once(__DIR__.'/../admin/controllers/grupo.php');
+
+$action = $_SERVER['REQUEST_METHOD'];
+$id =  isset($_GET['id']) ?  $_GET['id'] : null;
+
+switch($action){
+    case 'DELETE':
+        $data['mensaje']= 'No existe el grupo.';
+        if (!is_null($id)) {
+            $contador = $grupo->delete($id);
+            if ($contador == 1) {
+                $data['mensaje']= 'Se elimino el grupo.';
+            }
+        }
+        break;
+    case 'POST':
+        $data = array();
+        $data = $_POST['data'];
+        if (is_null($id)) {
+            $cantidad = $grupo->new($data);
+            if ($cantidad !=0) {
+                $data['mensaje']='Se inserto el grupo.';
+                //$data[]
+            }else{
+                $data['mensaje']='Ocurrio un error';
+            }
+        }else{
+            $cantidad = $grupo->edit($id, $data);
+            if ($cantidad !=0) {
+                $data['mensaje']='Se modifico el grupo.';
+                //$data[]
+            }else{
+                $data['mensaje']='Ocurrio un error';
+            }
+        }
+        
+        break;
+    case 'GET':
+    default:
+        if (is_null($id)) {
+            $data = $grupo->get();
+        }else {
+            $data = $grupo->get($id);
+        }
+        break;
+}
+$data = json_encode($data);
+echo ($data);
+?>
