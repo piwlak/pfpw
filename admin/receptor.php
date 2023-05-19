@@ -1,5 +1,5 @@
 <?php
-$baseUrl = 'http://localhost/escuela/admin';
+$baseUrl = __DIR__.'/escuela/admin';
 
 // Para cambiar al entorno de producción usar: www.paypal.com
 $paypal_hostname = 'www.sandbox.paypal.com';

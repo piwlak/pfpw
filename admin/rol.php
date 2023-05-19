@@ -1,8 +1,8 @@
 <?php
-require_once('controllers/rol.php');
-require_once('controllers/privilegio.php');
+require_once(__DIR__.'/controllers/rol.php');
+require_once(__DIR__.'/controllers/privilegio.php');
 include_once('views/header.php');
-include_once('views/menu.php');
+include_once('views/menu_director.php');
 
 $rol->validateRol('Administrador');
 

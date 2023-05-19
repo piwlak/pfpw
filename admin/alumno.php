@@ -1,16 +1,16 @@
 <?php 
 //controladores
-require_once('controllers/calificaciones.php');
-require_once('controllers/materia.php');
-require_once('controllers/alumno.php');
-require_once('controllers/grupo.php');
-require_once('controllers/tutor.php');
-require_once('controllers/status.php');
-require_once('controllers/localidad.php');
+require_once(__DIR__.'/controllers/calificaciones.php');
+require_once(__DIR__.'/controllers/materia.php');
+require_once(__DIR__.'/controllers/alumno.php');
+require_once(__DIR__.'/controllers/grupo.php');
+require_once(__DIR__.'/controllers/tutor.php');
+require_once(__DIR__.'/controllers/status.php');
+require_once(__DIR__.'/controllers/localidad.php');
 
 //vistas
 include("views/header.php");
-include("views/menu.php");
+include("views/menu_director.php");
 
 $alumno->validateRol('Maestro');
 

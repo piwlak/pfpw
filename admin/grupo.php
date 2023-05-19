@@ -1,9 +1,9 @@
 <?php
-require_once('controllers/grupo.php');
-require_once('controllers/grado.php');
-require_once('controllers/maestro.php');
+require_once(__DIR__.'/controllers/grupo.php');
+require_once(__DIR__.'/controllers/grado.php');
+require_once(__DIR__.'/controllers/maestro.php');
 include_once('views/header.php');
-include_once('views/menu.php');
+include_once('views/menu_director.php');
 
 $grupo->validateRol('Director');
 

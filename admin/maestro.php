@@ -1,11 +1,11 @@
 <?php 
 //controladores
-require_once('controllers/maestro.php');
-require_once('controllers/usuario.php');
+require_once(__DIR__.'/controllers/maestro.php');
+require_once(__DIR__.'/controllers/usuario.php');
 
 //vistas
 include("views/header.php");
-include("views/menu.php");
+include("views/menu_director.php");
 $maestro->validateRol('Director');
 
 $action = (isset($_GET['action'])) ? $_GET['action'] : 'get';

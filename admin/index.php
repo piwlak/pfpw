@@ -1,13 +1,13 @@
 <?php 
 //controladores
-require_once('controllers/sistema.php');
+require_once(__DIR__.'/controllers/sistema.php');
 
 //vistas
 include("views/header.php");
-include("views/menu.php");
+include("views/menu_director.php");
 ?>
 <?php
-$baseUrl = 'http://localhost/escuela/admin';
+$baseUrl = __DIR__.'/escuela/admin';
 ?>
 
 <h1> <small>Pago de Colegiaturas</small></h1>

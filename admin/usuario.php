@@ -1,8 +1,8 @@
 <?php
-require_once('controllers/usuario.php');
-require_once('controllers/rol.php');
+require_once(__DIR__."/controllers/usuario.php");
+require_once(__DIR__."/controllers/rol.php");
 include_once('views/header.php');
-include_once('views/menu.php');
+include_once('views/menu_director.php');
 $usuario->validateRol('Administrador');
 
 $action = (isset($_GET['action'])) ? $_GET['action'] : 'get';

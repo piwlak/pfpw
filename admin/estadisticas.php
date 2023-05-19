@@ -1,9 +1,9 @@
 <?php 
-require_once("controllers/alumno.php");
+require_once(__DIR__."/controllers/alumno.php");
 $sistema -> validateRol('Director');
 include_once("controllers/sistema.php");
 include_once("views/header.php");
-include_once("views/menu.php");
+include_once("views/menu_director.php");
 $reporte=$alumno->chartAlumno();
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

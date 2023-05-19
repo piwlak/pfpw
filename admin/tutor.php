@@ -1,12 +1,12 @@
 <?php 
 //controladores
-require_once('controllers/tutor.php');
-require_once('controllers/usuario.php');
-require_once('controllers/rol_tutor.php');
+require_once(__DIR__.'/controllers/tutor.php');
+require_once(__DIR__.'/controllers/usuario.php');
+require_once(__DIR__.'/controllers/rol_tutor.php');
 
 //vistas
 include("views/header.php");
-include("views/menu.php");
+include("views/menu_director.php");
 $tutor->validateRol('Director');
 
 
