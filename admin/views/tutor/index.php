@@ -18,8 +18,7 @@
     </thead>
     <tbody>
         <?php foreach ($data as $key => $tutor) : ?>
-            <?php 
-            ?>
+           
             <tr>
                 <th scope="row"><?php echo $tutor['id_tutor']; ?></th>
                 <td><?php echo $tutor['nombre']; ?></td>

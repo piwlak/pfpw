@@ -10,8 +10,6 @@
     </thead>
     <tbody>
         <?php foreach ($data as $key => $rol) : ?>
-            <?php 
-            ?>
             <tr>
                 <th scope="row"><?php echo $rol['id_rol']; ?></th>
                 <td><?php echo $rol['rol']; ?></td>

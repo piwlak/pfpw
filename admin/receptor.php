@@ -5,7 +5,7 @@ $baseUrl = __DIR__.'/escuela/admin';
 $paypal_hostname = 'www.sandbox.paypal.com';
 
 // El token lo obtenemos en las opciones de nuestra cuenta Paypal cuando activamos PDT
-$pdt_identity_token = 'tu_token_de_identidad';
+$pdt_identity_token = 'nqFwvYWgm0sGQtuBwxVfR-OWyxUSuS3i1PpwWDaDw-Go9CWftqObaMHUWaS';
 
 $tx = $_GET['tx'];
 

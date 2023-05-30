@@ -10,8 +10,6 @@
     </thead>
     <tbody>
         <?php foreach ($data as $key => $usuario) : ?>
-            <?php 
-            ?>
             <tr>
                 <th scope="row"><?php echo $usuario['id_usuario']; ?></th>
                 <td><?php echo $usuario['correo']; ?></td>

@@ -78,5 +78,4 @@ switch ($action) {
 }
 
 include_once('views/footer.php');
-
 ?>

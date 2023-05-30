@@ -1,4 +1,4 @@
-<?php 
+<?php
 //controladores
 require_once(__DIR__.'/controllers/tutor.php');
 require_once(__DIR__.'/controllers/usuario.php');
@@ -49,7 +49,6 @@ switch ($action) {
                 } else {
                     $tutor->flash('warning', "Algo fallo o no hubo cambios");
                     $data = $tutor->get();
-                     print_r($data);
                     include('views/tutor/index.php');
                 }
             } else {

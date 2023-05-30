@@ -17,8 +17,6 @@
     </thead>
     <tbody>
         <?php foreach ($data as $key => $maestro) : ?>
-            <?php 
-            ?>
             <tr>
                 <th scope="row"><?php echo $maestro['id_maestro']; ?></th>
                 <td><?php echo $maestro['nombre']; ?></td>

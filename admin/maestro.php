@@ -1,4 +1,4 @@
-<?php 
+<?php
 //controladores
 require_once(__DIR__.'/controllers/maestro.php');
 require_once(__DIR__.'/controllers/usuario.php');
@@ -46,7 +46,6 @@ switch ($action) {
                 } else {
                     $maestro->flash('warning', "Algo fallo o no hubo cambios");
                     $data = $maestro->get();
-                     print_r($data);
                     include('views/maestro/index.php');
                 }
             } else {

@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once(__DIR__."/controllers/alumno.php");
 $sistema -> validateRol('Director');
 include_once("controllers/sistema.php");

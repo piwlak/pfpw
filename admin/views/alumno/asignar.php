@@ -11,8 +11,6 @@
     </thead>
     <tbody>
         <?php foreach ($data_grupo as $key => $grupo) : ?>
-            <?php 
-            ?>
             <tr>
                 <td><?php echo $grupo['nombre_alumno']; ?></td>
                 <td><?php echo $grupo['grupo']; ?></td>

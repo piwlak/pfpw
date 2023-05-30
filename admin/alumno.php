@@ -1,4 +1,4 @@
-<?php 
+<?php
 //controladores
 require_once(__DIR__.'/controllers/calificaciones.php');
 require_once(__DIR__.'/controllers/materia.php');
@@ -133,22 +133,19 @@ switch ($action) {
                                 include("views/alumno/index.php");       
                             } else {
                                 $alumno->flash('warning', "Algo fallo o no hubo cambios");
-                                $data = $calificacion->get();
+                                $data = $alumno->get();
                                 include("views/alumno/index.php");       
                             }
                         } else {
                             $data = $calificacion->get($id);
                             include("views/calificaciones/index.php");
                         }
-                    break;                   
+                    break;                  
     case 'get':
     default:
     $alumno->validatePrivilegio('Consultar');
     $data = $alumno->get($id);
     include("views/alumno/index.php");       
 }
-
-
-
 include("views/footer.php");
 ?>

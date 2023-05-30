@@ -2,7 +2,7 @@
 require_once("sistema.php");
 class Calificacion extends Sistema{
 
-    public function get($id = null)
+    public function get($id)
     {
         $this->db();
         if (is_null($id)) {

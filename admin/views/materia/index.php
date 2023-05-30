@@ -12,8 +12,6 @@
     </thead>
     <tbody>
         <?php foreach ($data as $key => $materia) : ?>
-            <?php 
-            ?>
             <tr>
                 <th scope="row"><?php echo $materia['id_materia']; ?></th>
                 <td><?php echo $materia['materia']; ?></td>

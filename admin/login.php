@@ -71,3 +71,4 @@ switch ($action) {
         break;
 }
 include("views/footer.php");
+?>

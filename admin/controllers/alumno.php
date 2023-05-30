@@ -5,24 +5,31 @@ class Alumno extends Sistema{
     public function get($id = null)
     {
         $this->db();
-        if (is_null($id)) {
-            $sql = "select * from alumno as a
-            left join tutor t on a.id_tutor = t.id_tutor
-            left join localidad l on a.id_localidad = l.id_localidad
-            left join status s on a.id_status = s.id_status";
-            $st = $this->db->prepare($sql);
-            $st->execute();
-            $data = $st->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            $sql = "select * from alumno as a
-            left join tutor t on a.id_tutor = t.id_tutor
-            left join localidad l on a.id_localidad = l.id_localidad
-            left join status s on a.id_status = s.id_status
-            where id_alumno = :id";
-            $st = $this->db->prepare($sql);
-            $st->bindParam(":id", $id, PDO::PARAM_INT);
-            $st->execute();
-            $data = $st->fetchAll(PDO::FETCH_ASSOC);
+        try {
+            $this->db->beginTransaction();
+
+            if (is_null($id)) {
+                $sql = "select * from alumno as a
+                left join tutor t on a.id_tutor = t.id_tutor
+                left join localidad l on a.id_localidad = l.id_localidad
+                left join status s on a.id_status = s.id_status";
+                $st = $this->db->prepare($sql);
+                $st->execute();
+                $data = $st->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $sql = "select * from alumno as a
+                left join tutor t on a.id_tutor = t.id_tutor
+                left join localidad l on a.id_localidad = l.id_localidad
+                left join status s on a.id_status = s.id_status
+                where id_alumno = :id";
+                $st = $this->db->prepare($sql);
+                $st->bindParam(":id", $id, PDO::PARAM_INT);
+                $st->execute();
+                $data = $st->fetchAll(PDO::FETCH_ASSOC);
+            }
+        } catch (PDOException $Exception) {
+            $rc = 0;
+            $this->db->rollBack();
         }
         return $data;
     }
@@ -103,19 +110,45 @@ class Alumno extends Sistema{
         }
         return $data;
     }
-    public function guardar($id,$data3){
-        $this->db();
-        $sql = "UPDATE calificacion 
-        SET periodo_1 = $data3[periodo_1],
-        periodo_2 = $data3[periodo_2], 
-        periodo_3 = $data3[periodo_3] 
-        WHERE id_alumno = $id";
-        $st = $this->db->prepare($sql);
-        $st->execute();
-        $rc = $st->rowCount();
-        return $rc;
+    public function guardar($id, $data3)
+{
+    $this->db();
+    try {
+        $this->db->beginTransaction();
+        $rc=0;
+        foreach ($data3 as $key => $calificacion) {
+            $id_materia = $calificacion['id_materia'];
+            $periodo1 = $calificacion['periodo_1'];
+            $periodo2 = $calificacion['periodo_2'];
+            $periodo3 = $calificacion['periodo_3'];
+            
 
+            $sql = "UPDATE calificacion 
+                    SET periodo_1 = :periodo1,
+                        periodo_2 = :periodo2,
+                        periodo_3 = :periodo3 
+                    WHERE id_alumno = :id
+                        AND id_materia = :id_materia";
+            
+            $st = $this->db->prepare($sql);
+            $st->bindParam(':periodo1', $periodo1);
+            $st->bindParam(':periodo2', $periodo2);
+            $st->bindParam(':periodo3', $periodo3);
+            $st->bindParam(':id', $id);
+            $st->bindParam(':id_materia', $id_materia);
+            
+            $st->execute();
+            $rc = $rc + ($st->rowCount());
+        }
+        $this->db->commit();
+    } catch (PDOException $Exception) {
+        $rc = 0;
+        $this->db->rollBack();
     }
+    
+    return $rc;
+}
+
 
     public function newGrupo($id,$data)
     {
@@ -190,7 +223,7 @@ class Alumno extends Sistema{
 
     public function chartAlumno(){
         $this->db();
-            $sql= "select count(a.id_alumno) as cantidad from alumno a order by 1 asc";
+            $sql= "select count(id_alumno) as cantidad from alumno";
             $st = $this->db->prepare($sql);
             $st->execute();
             $data = $st->fetchAll(PDO::FETCH_ASSOC);

@@ -100,6 +100,9 @@ class Sistema{
                     if (!in_array($rol, $_SESSION['roles'])) {
                         $this->killApp('No tienes el rol adecuado');
                     }
+                    else {
+                        return $rol;
+                    }
                 } else {
                     $this->killApp('No tienes roles asignados');
                 }
@@ -133,9 +136,9 @@ class Sistema{
     public function killApp($mensaje)
     {
         ob_end_clean();
-        include('views/header_error.php');
+        include('views/header.php');
         $this->flash('danger', $mensaje);
-        include('views/footer_error.php');
+        include('views/footer.php');
         die();
     }
     public function forgot($destinatario, $token)
@@ -247,7 +250,38 @@ class Sistema{
         return $cantidad;
     }    
 
+    public function getAlumnos($correo)
+    {
+        $this->db();
+        $sql = "select * from alumno as a
+                join tutor t on a.id_tutor = t.id_tutor
+                join usuario u on t.id_usuario = u.id_usuario
+                where u.correo = :correo";
+        $st = $this->db->prepare($sql);
+        $st->bindParam(":correo", $correo, PDO::PARAM_INT);
+        $st->execute();
+        $data = $st->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+    public function getCal($correo)
+    {
+        $this->db();
+        $sql = "select a.nombre_alumno, a.primer_apellido_alumno, a.segundo_apellido_alumno,
+                m.materia, c.periodo_1, c.periodo_2, c.periodo_3
+                from alumno as a
+                join tutor t on a.id_tutor = t.id_tutor
+                join usuario u on t.id_usuario = u.id_usuario
+                join calificacion as c on c.id_alumno = a.id_alumno
+                left join materia as m on c.id_materia = m.id_materia
+                where u.correo = :correo";
+        $st = $this->db->prepare($sql);
+        $st->bindParam(":correo", $correo, PDO::PARAM_INT);
+        $st->execute();
+        $data = $st->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
+
 }
 $sistema = new Sistema;
-
 ?>

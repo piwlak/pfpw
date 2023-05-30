@@ -11,8 +11,6 @@
     </thead>
     <tbody>
         <?php foreach ($data_privilegio as $key => $privilegio) : ?>
-            <?php 
-            ?>
             <tr>
                 <th scope="row"><?php echo $privilegio['id_privilegio']; ?></th>
                 <td><?php echo $privilegio['rol']; ?></td>
