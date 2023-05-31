@@ -1,5 +1,7 @@
 <h1><a href="alumno.php?action=get"> Alumno  </a></h1>
 <a href="alumno.php?action=new" class="btn btn-success"> Nuevo alumn@ </a>
+<a href="excel.php" class="btn btn-primary"> Generar excel </a>
+
 <table class="table" >
     <thead>
         <tr>
@@ -31,6 +33,7 @@
                         <a class="btn btn-warning" href="alumno.php?action=getCalificacion&id=<?php echo $alumno['id_alumno'] ?>">Calificaciones</a>
                         <a class="btn btn-info" href="alumno.php?action=asignar&id=<?php echo $alumno['id_alumno'] ?>">Grupo</a>
                         <a class="btn btn-dark" href="constancia.php?action=alumno&id=<?php echo $alumno['id_alumno'] ?>">Constancia</a>
+                        <a class="btn btn-secondary" href="qr.php">Credencial</a>
                         <a class="btn btn-primary" href="alumno.php?action=edit&id=<?php echo $alumno['id_alumno'] ?>">Modificar</a>
                         <a class="btn btn-danger" href="alumno.php?action=delete&id=<?php echo $alumno['id_alumno'] ?>">Eliminar</a>
                     </div>
