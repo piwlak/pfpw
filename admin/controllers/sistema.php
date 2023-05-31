@@ -2,7 +2,7 @@
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
-require_once('config.php');
+require_once(__DIR__.'/../config.php');
 class Sistema{
     //primero nos conectamos a la base de datos, establecemos una variable para hacer una sola conexion
     var $db = null;
