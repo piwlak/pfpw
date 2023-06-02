@@ -27,7 +27,7 @@ switch ($action) {
         }
         break;
         case 'edit':
-            $usuario->validatePrivilegio('MOdificar');
+            $usuario->validatePrivilegio('Modificar');
             if (isset($_POST['enviar'])) {
                 $data = $_POST['data'];
                 $id = $_POST['data']['id_usuario'];

@@ -18,8 +18,8 @@ switch($action){
         break;
     case 'POST':
         $data = array();
-        $data = $_POST['data'];
-        if (is_null($id)) {
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body, true);        if (is_null($id)) {
             $data['mensaje']='Ocurrio un error';
         }else{
             $cantidad = $alumno->newGrupo($data,$id);
@@ -37,7 +37,7 @@ switch($action){
         if (is_null($id)) {
             $data['mensaje']='Ocurrio un error';
         }else {
-            $data = $alumno->asignar($id);
+            $data = $alumno->getGrupo($id);
         }
         break;
 }

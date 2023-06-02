@@ -18,8 +18,9 @@ switch($action){
         break;
     case 'POST':
         $data = array();
-        $data = $_POST['data'];
-        if (is_null($id)) {
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body, true);             
+          if (is_null($id)) {
             $cantidad = $maestro->new($data);
             if ($cantidad !=0) {
                 $data['mensaje']='Se inserto el maestro.';

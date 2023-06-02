@@ -18,7 +18,8 @@ switch($action){
         break;
     case 'POST':
         $data = array();
-        $data = $_POST['data'];
+        $request_body = file_get_contents('php://input');
+        $data = json_decode($request_body, true);       
         if (is_null($id)) {
             $cantidad = $grupo->new($data);
             if ($cantidad !=0) {
